@@ -11,7 +11,6 @@
  * GNU General Public License for more details.
  */
 
-
 #include <linux/module.h>
 #include <linux/interrupt.h>
 #include <linux/of.h>
@@ -928,6 +927,7 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 		if (ctrl->ndx != DSI_CTRL_LEFT)
 			goto end;
 	}
+
 	on_cmds = &ctrl->on_cmds;
 
 	if ((pinfo->mipi.dms_mode == DYNAMIC_MODE_SWITCH_IMMEDIATE) &&
@@ -1149,7 +1149,6 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 {
 	struct mdss_dsi_ctrl_pdata *ctrl = NULL;
 	struct mdss_panel_info *pinfo;
-
 
 	if (pdata == NULL) {
 		pr_err("%s: Invalid input data\n", __func__);
@@ -2126,9 +2125,11 @@ static void mdss_dsi_parse_esd_params(struct device_node *np,
 	if ((ctrl->status_mode == ESD_BTA) || (ctrl->status_mode == ESD_TE) ||
 			(ctrl->status_mode == ESD_MAX))
 		return;
+
 	mdss_dsi_parse_dcs_cmds(np, &ctrl->status_cmds,
 			"qcom,mdss-dsi-panel-status-command",
 				"qcom,mdss-dsi-panel-status-command-state");
+
 	rc = of_property_read_u32(np, "qcom,mdss-dsi-panel-max-error-count",
 		&tmp);
 	ctrl->max_status_error_count = (!rc ? tmp : 0);
@@ -2858,11 +2859,7 @@ static int mdss_panel_parse_dt(struct device_node *np,
 			pinfo->panel_orientation = MDP_FLIP_UD;
 	}
 
-#ifdef CONFIG_PROJECT_DAISY
-	rc = of_property_read_u32(np, "qcom,mdss-brightness-max-level-global", &tmp);
-#else
 	rc = of_property_read_u32(np, "qcom,mdss-brightness-max-level", &tmp);
-#endif
 	pinfo->brightness_max = (!rc ? tmp : MDSS_MAX_BL_BRIGHTNESS);
 	rc = of_property_read_u32(np, "qcom,mdss-dsi-bl-min-level", &tmp);
 	pinfo->bl_min = (!rc ? tmp : 0);
