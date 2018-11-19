@@ -57,14 +57,30 @@
 		25 1e 08 0a 06 03 04 a0];
 };
 
-&soc {
-	mdss_dsi0_pll: qcom,mdss_dsi_pll@994400 {
-		/delete-property/ qcom,dsi-pll-ssc-en;
-		/delete-property/ qcom,dsi-pll-ssc-mode;
-	};
+&mdss_dsi0 {
+	qcom,dsi-pref-prim-pan = <&dsi_td4310_fhdplus_e7_vid>;
+};
 
-	mdss_dsi1_pll: qcom,mdss_dsi_pll@996400 {
-		/delete-property/ qcom,dsi-pll-ssc-en;
-		/delete-property/ qcom,dsi-pll-ssc-mode;
-	};
-};	
+/*add begin for E7 display*/
+&dsi_td4310_fhdplus_e7_vid {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+
+&dsi_td4310_fhdplus_e7_g55_vid {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+
+
+&dsi_td4310_ebbg_fhdplus_e7_vid {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+
+&dsi_nt36672_tianma_fhdplus_e7_vid {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+
+&dsi_nt36672_csot_fhdplus_e7_vid {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+/*add end for E7 display*/
+	

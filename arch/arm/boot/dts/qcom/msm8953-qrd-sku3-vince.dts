@@ -11,6 +11,8 @@
  * GNU General Public License for more details.
  */
 
+/dts-v1/;
+
 #include "msm8953.dtsi"
 #include "msm-pmi8950.dtsi"
 
@@ -20,7 +22,8 @@
 		   "qcom,msm8953-qrd", "qcom,msm8953", "qcom,qrd";
 	qcom,board-id= <0x1000b 0x08>;
 };
- &soc {
+
+&soc {
 	led_flash0: qcom,camera-flash {
 		cell-index = <0>;
 		compatible = "qcom,camera-flash";
@@ -30,14 +33,18 @@
 		qcom,switch-source = <&pmi8950_switch>;
 	};
 };
- #include "msm8953-qrd-sku3.dtsi"
- &usb3 {
+
+#include "msm8953-qrd-sku3.dtsi"
+
+&usb3 {
 	vbus_dwc3-supply = <&smbcharger_charger_otg>;
 };
- &mdss_dsi1 {
+
+&mdss_dsi1 {
 	lab-supply = <&lab_regulator>;
 	ibb-supply = <&ibb_regulator>;
 };
+
 &dsi_panel_pwr_supply {
 	qcom,panel-supply-entry@0 {
 		qcom,supply-post-on-sleep= <2>;
@@ -57,7 +64,6 @@
 		qcom,supply-post-on-sleep = <10>;
 		qcom,supply-post-off-sleep = <2>;
 	};
-
 	qcom,panel-supply-entry@3 {
 		reg = <3>;
 		qcom,supply-name = "ibb";
@@ -68,3 +74,12 @@
 		/*qcom,supply-post-on-sleep = <10>;*/
 	};
 };
+
+#include "vince/vince-audio.dtsi"
+#include "vince/vince-camera.dtsi"
+#include "vince/vince-general.dtsi"
+#include "vince/vince-memory.dtsi"
+#include "vince/vince-pinctrl.dtsi"
+#include "vince/vince-pm.dtsi"
+#include "vince/battery/vince-batterydata.dtsi"
+#include "vince/panel/vince-panel.dtsi" 

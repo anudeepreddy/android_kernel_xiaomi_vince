@@ -297,12 +297,6 @@
 			};
 		};
 		pmx_ts_int_suspend {
-			ts_int_suspend: ts_int_suspend {
-				config {
-					bias-pull-up;
-					/delete-property/ bias-pull-down;
-				};
-			};
 			synaptic_int_suspend: synaptic_int_suspend {
 				mux {
 					pins = "gpio65";
