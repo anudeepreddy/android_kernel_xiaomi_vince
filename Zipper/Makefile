@@ -1,9 +1,9 @@
-NAME ?= GenomKernel
+NAME ?= Genom-EAS
 
 
 DATE := $(shell date "+%Y%m%d-%I%M")
 
-CODE := MIUI
+CODE := MIUI-CAF
 
 ZIP := $(NAME)-$(CODE)-$(DATE).zip
 CZIP := $(NAME)-$(CODE)-Clang-$(DATE).zip
@@ -33,7 +33,9 @@ $(CZIP):
 clean:
 	@rm -vf "$(NAME)-"*.zip*
 	@rm -vf kernel/Image.gz
-	@rm -vf kernel/normal/msm8953-qrd-sku3-e7.dtb
+	@rm -vf modules/system/lib/modules/*.ko*
+	@rm -vf modules/system/lib/modules/pronto/*.ko*
+	@rm -vf kernel/normal/*.dtb*
 	@echo "Done."
 
 
