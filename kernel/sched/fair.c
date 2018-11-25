@@ -4545,7 +4545,6 @@ enqueue_task_fair(struct rq *rq, struct task_struct *p, int flags)
 
 		if (cfs_rq_throttled(cfs_rq))
 			break;
-
 		update_load_avg(se, UPDATE_TG);
 		update_cfs_shares(se);
 	}
@@ -4707,13 +4706,11 @@ static unsigned long
 decay_load_missed(unsigned long load, unsigned long missed_updates, int idx)
 {
 	int j = 0;
-
 	if (!missed_updates)
 		return load;
 
 	if (missed_updates >= degrade_zero_ticks[idx])
 		return 0;
-
 	if (idx == 1)
 		return load >> missed_updates;
 
