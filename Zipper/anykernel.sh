@@ -35,6 +35,10 @@ dump_boot;
 
 # begin ramdisk changes
 
+# make schedutil default governor
+insert_line init.rc '# set governor' 'before' '# scheduler tunables' '# set governor'
+insert_line init.rc 'write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "schedutil"' 'after' '# set governor' 'write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "schedutil"'
+
 # end ramdisk changes
 
 write_boot;
