@@ -35,6 +35,18 @@ dump_boot;
 
 # begin ramdisk changes
 
+# add default values 1
+insert_line init.rc '# set default schedTune value for foreground/top-app (only affects EAS)' 'before' '# Mount staging areas for devices managed by vold' '# set default schedTune value for foreground/top-app (only affects EAS)'
+insert_line init.rc 'write /dev/stune/foreground/schedtune.prefer_idle 1' 'after' '# set default schedTune value for foreground/top-app (only affects EAS)' 'write /dev/stune/foreground/schedtune.prefer_idle 1'
+insert_line init.rc 'write /dev/stune/top-app/schedtune.prefer_idle 1' 'after' 'write /dev/stune/foreground/schedtune.prefer_idle 1' 'write /dev/stune/top-app/schedtune.prefer_idle 1'
+insert_line init.rc 'write /dev/stune/top-app/schedtune.boost 7' 'after' 'write /dev/stune/top-app/schedtune.prefer_idle 1' 'write /dev/stune/top-app/schedtune.boost 10'
+
+# add default values 2
+insert_line init.rc '# update cpusets now that processors are up' 'before' '# Start standard binderized HAL daemons' '# update cpusets now that processors are up'
+insert_line init.rc 'write /dev/stune/foreground/schedtune.prefer_idle 1' 'after' '# update cpusets now that processors are up' 'write /dev/stune/foreground/schedtune.prefer_idle 1'
+insert_line init.rc 'write /dev/stune/top-app/schedtune.prefer_idle 1' 'after' 'write /dev/stune/foreground/schedtune.prefer_idle 1' 'write /dev/stune/top-app/schedtune.prefer_idle 1'
+insert_line init.rc 'write /dev/stune/top-app/schedtune.boost 1' 'after' 'write /dev/stune/top-app/schedtune.prefer_idle 1' 'write /dev/stune/top-app/schedtune.boost 1'
+
 # make schedutil default governor
 insert_line init.rc '# set governor' 'before' '# scheduler tunables' '# set governor'
 insert_line init.rc 'write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "schedutil"' 'after' '# set governor' 'write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "schedutil"'
