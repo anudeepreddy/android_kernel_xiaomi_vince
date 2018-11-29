@@ -1,0 +1,105 @@
+/*
+ * Copyright (c) 2017, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/ {
+	cpus {
+		CPU0: cpu@0 {
+			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_1>;
+		};
+
+		CPU1: cpu@1 {
+			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_1>;
+		};
+
+		CPU2: cpu@2 {
+			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_1>;
+		};
+
+		CPU3: cpu@3 {
+			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_1>;
+		};
+
+		CPU4: cpu@100 {
+			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_1>;
+		};
+
+		CPU5: cpu@101 {
+			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_1>;
+		};
+
+		CPU6: cpu@102 {
+			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_1>;
+		};
+
+		CPU7: cpu@103 {
+			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_1>;
+		};
+	};
+
+	energy_costs: energy-costs {
+		compatible = "sched-energy";
+
+		CPU_COST_0: core-cost0 {
+			busy-cost-data = <
+				 652800   5
+				1036800  10
+				1401600  16
+				1689600  22
+				1804800  26
+				1958400  33
+				2016000  36
+				2208000  44
+				2409000  56
+				2616000  65
+				2958400  76
+				3150400  86
+			>;
+			idle-cost-data = <
+				4 3 2 1
+			>;
+		};
+		CLUSTER_COST_0: cluster-cost0 {
+			busy-cost-data = <
+				 652800   69
+				1036800   74
+				1401600   80
+				1689600  100
+				1804800  110
+				1958400  130
+				2016000  140
+				2208000  150
+				2409000  160
+				2616000  170
+				2958400  180
+				3150400  190
+			>;
+			idle-cost-data = <
+				4 3 2 1
+			>;
+		};
+		CLUSTER_COST_1: cluster-cost1 {
+			busy-cost-data = <
+				 652800    5
+				1036800   10
+				1401600   16
+				1689600   95
+				1804800  105
+				1958400  125
+				2016000  135
+			>;
+			idle-cost-data = <
+				4 3 2 1
+			>;
+		};
+	};
+};
