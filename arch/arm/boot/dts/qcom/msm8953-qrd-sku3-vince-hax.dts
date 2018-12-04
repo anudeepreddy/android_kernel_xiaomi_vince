@@ -13193,4 +13193,3 @@
 
 #include "overlay/cpu-eas.dtsi"
 #include "overlay/cpu-oc.dtsi"
-#include "overlay/gpu-oc.dtsi"
